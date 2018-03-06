@@ -13,7 +13,8 @@ namespace TestWebApplication.Models
         public static DataSet GetAllData(string sqlServer)
         {
             DataSet ds = new DataSet();
-            using (SqlConnection connection = new SqlConnection(@"Data Source=ТЕРМИНАТОР-Д\SQLEXPRESS2012;Initial Catalog=PostDB;Integrated Security=True"))
+            string connection = string.Format(@"Data Source={0};Initial Catalog=PostDB;Integrated Security=True", sqlServer);
+            using (SqlConnection connection = new SqlConnection(connection))
             {
                 using (SqlCommand cmd = new SqlCommand("SELECT * FROM MailAddress;", connection))
                 {
