@@ -24,6 +24,7 @@ namespace TestWebApplication.Controllers
         {
             //Получение всех sql server
             GetAllServers();
+            ViewBag.CurServer = obj;
             return View();
         }
         //Возможно надо возвращать значение и передавать во View
@@ -41,7 +42,7 @@ namespace TestWebApplication.Controllers
 
         public List<MailAddress> GetPeople()
         {
-            string sqlServer = string.Empty;
+            string sqlServer = ViewBag.CurServer;
 
             //Добавить выбор сервера. Скорее всего как-то через веб
 
