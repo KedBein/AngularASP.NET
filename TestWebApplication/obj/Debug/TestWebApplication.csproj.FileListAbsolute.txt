@@ -53,4 +53,3 @@ C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebAppli
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.csproj.CoreCompileInputs.cache
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.dll
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.pdb
-C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.csprojResolveAssemblyReference.cache

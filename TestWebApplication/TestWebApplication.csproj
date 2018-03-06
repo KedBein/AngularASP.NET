@@ -159,6 +159,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DataAccess.cs" />
     <Compile Include="Models\MailAddress.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -173,7 +174,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="script.js" />
     <Content Include="ScriptsNg\Controller\PostController.js" />
-    <Content Include="ScriptsNg\Services\app.js" />
+    <Content Include="ScriptsNg\Module\app.js" />
+    <Content Include="ScriptsNg\Services\PostServices.js" />
     <Content Include="Scripts\angular-animate.js" />
     <Content Include="Scripts\angular-animate.min.js" />
     <Content Include="Scripts\angular-aria.js" />
@@ -985,10 +987,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\version.json" />
     <Content Include="tsconfig.json" />
+    <Content Include="Views\Home\Helper.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ScriptsNg\Module\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

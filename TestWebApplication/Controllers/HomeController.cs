@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Data.SqlClient;
 using TestWebApplication.Models;
 using System.Data;
+using System.Data.Sql;
 
 namespace TestWebApplication.Controllers
 {
@@ -13,50 +10,46 @@ namespace TestWebApplication.Controllers
     {
         public ActionResult Index()
         {
-            //var obj = { country: "Россия", city: "Москва", street: "Ленина", homenum: 3, index: 446345, Date: "2000-11-22" };
-            TestClass obj = new TestClass() {country = "Россия", sity = "Москва", street= "Ленина", homenum= 3, index= 446345, Date = new DateTime(2017, 11, 23) };
-            //TestClass[] obk = new TestClass[] { obj };
-            //JsonResult res = GetPeople();
-            //ViewBag.rand = res;//Json(obk);
-            
             return View();
         }
-        
-        public class TestClass
+
+        public ActionResult Helper()
         {
-            public string country;
-            public string sity;
-            public string street;
-
-            public int homenum;
-            public int index;
-
-            public DateTime Date;
-
+            //Получение всех sql server
+            GetAllServers();
+            return View();
         }
         [HttpPost]
+        public ActionResult Helper(string obj)
+        {
+            //Получение всех sql server
+            GetAllServers();
+            return View();
+        }
+        //Возможно надо возвращать значение и передавать во View
+        private void GetAllServers()
+        {
+            DataTable dt = SqlDataSourceEnumerator.Instance.GetDataSources();
+            List<string> ddlInstances = new List<string>();
+            foreach (DataRow dr in dt.Rows)
+            {
+                ddlInstances.Add(string.Concat(dr["ServerName"], "\\", dr["InstanceName"]));
+            }
+            SelectList servers = new SelectList(ddlInstances);
+            ViewBag.Servers = servers;
+        }
+
         public List<MailAddress> GetPeople()
         {
-            //SqlConnection conn = new SqlConnection();
-            //conn.ConnectionString = @"Data Source=ТЕРМИНАТОР-Д\SQLEXPRESS2012;Initial Catalog=PostDB;Integrated Security=True";
-            //conn.Open();
+            string sqlServer = string.Empty;
+
+            //Добавить выбор сервера. Скорее всего как-то через веб
+
             List<MailAddress> postData = new List<MailAddress>();
-            DataSet ds = new DataSet();
-            using (SqlConnection con = new SqlConnection(@"Data Source=ТЕРМИНАТОР-Д\SQLEXPRESS2012;Initial Catalog=PostDB;Integrated Security=True"))
-            {
-                using (SqlCommand cmd = new SqlCommand())
-                {
-                    cmd.Connection = con;
-                    cmd.CommandText = "select * from MailAddress;";
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                    {
-                        da.Fill(ds);
-                    }
-                }
-            }
+            DataSet ds = DataAccess.GetAllData(sqlServer);
+            
             if (ds != null && ds.Tables.Count > 0)
             {
-                ViewBag.RowCount = Json(ds.Tables[0].Rows.Count);
                 foreach (DataRow dr in ds.Tables[0].Rows)
                 {
                     postData.Add(new MailAddress(dr["country"].ToString(), dr["city"].ToString(), dr["street"].ToString(),

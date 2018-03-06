@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
+        </ul>
+    </div>
+    <div>@*Выбирает сервер, на котором размещена БД, на текущий момент не отправляет текущий объект*@
+        @using (Html.BeginForm("Helper", "Home", FormMethod.Post))
+        {
+            @Html.DropDownList("Servers", ViewBag.Servers as SelectList, new { onchange = "this.form.submit();"})
+       }
+    </div>
+</body>
+</html>
