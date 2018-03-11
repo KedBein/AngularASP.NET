@@ -1,4 +1,5 @@
-﻿@{
+﻿@model TestWebApplication.Models.ServerSelection
+@{
     Layout = null;
 }
 
@@ -15,11 +16,12 @@
             <li>@Html.ActionLink("Домашняя страница", "Index", "Home")</li>
         </ul>
     </div>
-    <div>@*Выбирает сервер, на котором размещена БД, на текущий момент не отправляет текущий объект*@
+    <div>
+        @*Выбирает сервер, на котором размещена БД*@
         @using (Html.BeginForm("Helper", "Home", FormMethod.Post))
-        {
-            @Html.DropDownList("Servers", ViewBag.Servers as SelectList, new { onchange = "this.form.submit();"})
-       }
+    {
+        @Html.DropDownListFor(m => m.SelectedValue, Model.ListValue as SelectList, "Select server", new { onchange = "this.form.submit();" })
+}
     </div>
 </body>
 </html>
