@@ -1,8 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using TestWebApplication.Models;
 using System.Data;
 using System.Data.Sql;
+using TestWebApplication.Models;
+using TestWebApplication.HelperClasses;
 
 namespace TestWebApplication.Controllers
 {
@@ -16,35 +17,52 @@ namespace TestWebApplication.Controllers
         public ActionResult Helper()
         {
             //Получение всех sql server
-            GetAllServers();
-            return View();
+            ServerSelection selection = GetAllServers();
+            return View(selection);
         }
         [HttpPost]
-        public ActionResult Helper(string obj)
+        public ActionResult Helper(ServerSelection obj)
         {
+            GlobalVariables.SqlServer = obj.SelectedValue;
             //Получение всех sql server
-            GetAllServers();
-            ViewBag.CurServer = obj;
-            return View();
+            ServerSelection selection = GetAllServers();
+            return View(selection);
         }
-        //Возможно надо возвращать значение и передавать во View
-        private void GetAllServers()
+        
+        /// <summary>
+        /// Возвращает список всех активных серверов на машине.
+        /// </summary>
+        /// <returns>Список активных серверов на машине</returns>
+        private ServerSelection GetAllServers()
         {
-            DataTable dt = SqlDataSourceEnumerator.Instance.GetDataSources();
-            List<string> ddlInstances = new List<string>();
-            foreach (DataRow dr in dt.Rows)
+            ServerSelection selection = new ServerSelection();
+            List<SelectListItem> ddlInstances = new List<SelectListItem>();
+            if (GlobalVariables.DdlInstances == null)
             {
-                ddlInstances.Add(string.Concat(dr["ServerName"], "\\", dr["InstanceName"]));
+                DataTable dt = SqlDataSourceEnumerator.Instance.GetDataSources();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    string value = string.Concat(dr["ServerName"], "\\", dr["InstanceName"]);
+                    ddlInstances.Add(new SelectListItem() { Text = value, Value = value });
+                }
+                GlobalVariables.DdlInstances = ddlInstances;
             }
-            SelectList servers = new SelectList(ddlInstances);
-            ViewBag.Servers = servers;
+            else
+                ddlInstances = GlobalVariables.DdlInstances;
+
+            selection.ListValue = new SelectList(ddlInstances, "Text", "Value");
+            ViewBag.Servers = ddlInstances;
+            return selection;
         }
 
-        public List<MailAddress> GetPeople()
+        /// <summary>
+        /// Получает список всех почтовых адресов из базы PostDB.
+        /// </summary>
+        /// <returns>Список почтовых адресов</returns>
+        public JsonResult GetPeople()
         {
-            string sqlServer = ViewBag.CurServer;
-
-            //Добавить выбор сервера. Скорее всего как-то через веб
+            string sqlServer = GlobalVariables.SqlServer;
+            if (string.IsNullOrEmpty(sqlServer)) return null;
 
             List<MailAddress> postData = new List<MailAddress>();
             DataSet ds = DataAccess.GetAllData(sqlServer);
@@ -58,7 +76,8 @@ namespace TestWebApplication.Controllers
                         ));
                 }
             }
-            return postData;
+            JsonResult testResult = Json(postData, JsonRequestBehavior.AllowGet);
+            return testResult;
         }
 
     }

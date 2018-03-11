@@ -13,10 +13,10 @@ namespace TestWebApplication.Models
         public static DataSet GetAllData(string sqlServer)
         {
             DataSet ds = new DataSet();
-            string connection = string.Format(@"Data Source={0};Initial Catalog=PostDB;Integrated Security=True", sqlServer);
-            using (SqlConnection connection = new SqlConnection(connection))
-            {
-                using (SqlCommand cmd = new SqlCommand("SELECT * FROM MailAddress;", connection))
+            string conn = string.Format(@"Data Source={0};Initial Catalog=PostDB;Integrated Security=True", sqlServer);
+            using (SqlConnection connection = new SqlConnection(conn))
+            {//Пока загружаются только 10т. строк, т.к. иначе ограничение на максимальную строку JSON не даст загрузить данные. Нужна динамическая подгрузка?
+                using (SqlCommand cmd = new SqlCommand("SELECT TOP 10000 * FROM MailAddress;", connection))
                 {
                     using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {

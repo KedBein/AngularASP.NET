@@ -159,8 +159,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperClasses\GlobalVariables.cs" />
     <Compile Include="Models\DataAccess.cs" />
     <Compile Include="Models\MailAddress.cs" />
+    <Compile Include="Models\ServerSelection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

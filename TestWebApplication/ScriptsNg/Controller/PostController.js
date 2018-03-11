@@ -35,17 +35,17 @@
     $scope.options4 = {
         startingDay: 1,
         minDate: new Date()
-    }
+    };
 
     $scope.parse_date = function () {
         "use strict";
         $scope.parsed_date = mwMultiSelectService.parse($scope.selectedDates, 'dd.MM.y');
         $scope.parsed_date2 = mwMultiSelectService.parse($scope.selectedDates3);
-    }
+    };
 
     $scope.rowCollection = [];
+    
     //Получаем все записи из БД Get запросом
-    //Метод точно вызывается, ибо можно отловить точку в GetPeople(), однако не могу понять почему данные не отображаются в rowCollection
     $scope.fillList = function () {
         var httpreq = '/Home/GetPeople/';
         var _mailAddress = PostService.getAll(httpreq);
