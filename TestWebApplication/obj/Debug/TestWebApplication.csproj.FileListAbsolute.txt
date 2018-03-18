@@ -50,7 +50,7 @@ C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebAppli
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\bin\ru\System.Web.WebPages.resources.dll
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\bin\ru\System.Web.WebPages.Deployment.resources.dll
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\bin\ru\System.Web.WebPages.Razor.resources.dll
+C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.csprojResolveAssemblyReference.cache
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.csproj.CoreCompileInputs.cache
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.dll
 C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.pdb
-C:\Users\Терминатор\Documents\Visual Studio 2017\Projects\TestWebApplication\TestWebApplication\obj\Debug\TestWebApplication.csprojResolveAssemblyReference.cache

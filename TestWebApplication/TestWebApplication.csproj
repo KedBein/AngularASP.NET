@@ -175,6 +175,7 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="script.js" />
+    <Content Include="ScriptsNg\Config\PostConfig.js" />
     <Content Include="ScriptsNg\Controller\PostController.js" />
     <Content Include="ScriptsNg\Module\app.js" />
     <Content Include="ScriptsNg\Services\PostServices.js" />
@@ -203,6 +204,8 @@
     <Content Include="Scripts\angular-scenario.js" />
     <Content Include="Scripts\angular-touch.js" />
     <Content Include="Scripts\angular-touch.min.js" />
+    <Content Include="Scripts\angular-translate.js" />
+    <Content Include="Scripts\angular-translate.min.js" />
     <Content Include="Scripts\angular.js" />
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -224,6 +227,7 @@
     <Content Include="Scripts\angular-cookies.min.js.map" />
     <Content Include="Scripts\angular-aria.min.js.map" />
     <Content Include="Scripts\angular-animate.min.js.map" />
+    <Content Include="Pagination.Custom.html" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\i18n\angular-locale_af-na.js" />
     <Content Include="Scripts\i18n\angular-locale_af-za.js" />

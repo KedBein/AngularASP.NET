@@ -28,7 +28,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Выбрать текущий сервер", "Helper", "Home")</li>
+                    <li><a href="/Home/Helper">{{ 'CURSERVER' | translate }}</a></li>
                 </ul>
             </div>
         </div>
@@ -37,7 +37,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year – приложение ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year – {{ 'APPLICATION' | translate }} ASP.NET</p>
         </footer>
     </div>
 

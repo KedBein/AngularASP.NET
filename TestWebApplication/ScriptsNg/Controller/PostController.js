@@ -1,4 +1,4 @@
-﻿app.controller('MainCtrl', ['$scope', 'PostService', 'mwMultiSelectService', function ($scope, PostService, mwMultiSelectService) {
+﻿app.controller('MainCtrl', ['$translate', '$scope', 'PostService', 'mwMultiSelectService', function ($translate, $scope, PostService, mwMultiSelectService) {
     
     //datepicker range popup
     $scope.activeDate = null;
@@ -43,6 +43,11 @@
         $scope.parsed_date2 = mwMultiSelectService.parse($scope.selectedDates3);
     };
 
+    //Смена языка в рантайме
+    $scope.changeLanguage = function (langKey) {
+        $translate.use(langKey);
+    };
+
     $scope.rowCollection = [];
     
     //Получаем все записи из БД Get запросом
@@ -57,5 +62,7 @@
         });
     };
     $scope.fillList();
+
+    $scope.Count = $scope.rowCollection.length;
 
 }]);
