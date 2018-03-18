@@ -4,6 +4,7 @@
     app = angular.module('app', [
         'ui.bootstrap',
         'smart-table',
-        'mw-datepicker-range'
+        'mw-datepicker-range',
+        'pascalprecht.translate'
     ]);
 })();

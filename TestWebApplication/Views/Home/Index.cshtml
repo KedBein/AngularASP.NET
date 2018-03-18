@@ -10,6 +10,7 @@
     <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-translate/2.10.0/angular-translate.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.5.0/ui-bootstrap-tpls.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-smart-table/2.1.8/smart-table.js"></script>
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -19,18 +20,28 @@
 <body ng-app="app" style="width:90%; margin:auto;">
     <div ng-controller="MainCtrl" class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <h3>SmartTable support</h3>
+            <section>
+                <h4>{{ 'SELECTLANG' | translate }}:</h4>
+                <select ng-change="changeLanguage(selectedLanguage)" ng-model="selectedLanguage">
+                    <option value="en">English</option>
+                    <option value="ru">Русский</option>
+                </select>
+            </section>
+            <div>
+                <h4>{{ 'DATACOUNT' | translate }}:{{rowCollection.length}}</h4>
+            </div>
+            <h3>SmartTable</h3>
             @*rowCollection - переменная, где хранятся строки из БД.
-            displayedCollection - необходима в случае динамической коллекции.*@
+        displayedCollection - необходима в случае динамической коллекции.*@
             <table st-set-filter="customFilter" st-table="displayedCollection" st-safe-src="rowCollection" class="table table-striped">
                 <thead>
                     <tr>
-                        <th st-sort="country">Country</th>
-                        <th st-sort="sity">City</th>
-                        <th st-sort="street">Street</th>
-                        <th st-sort="homenum">Home number</th>
-                        <th st-sort="index">Index</th>
-                        <th st-sort="Date">Date</th>
+                        <th st-sort="country">{{ 'COUNTRY' | translate }}</th>
+                        <th st-sort="sity">{{ 'CITY' | translate }}</th>
+                        <th st-sort="street">{{ 'STREET' | translate }}</th>
+                        <th st-sort="homenum">{{ 'HOMENUM' | translate }}</th>
+                        <th st-sort="index">{{ 'INDEX' | translate }}</th>
+                        <th st-sort="Date">{{ 'DATE' | translate }}</th>
                     </tr>
                     <tr>
                         <th>
@@ -66,7 +77,7 @@
                 <tfoot>
                     <tr>
                         <td colspan="5" class="text-left">
-                            <div st-pagination="" st-items-by-page=100 st-displayed-pages="7"></div>
+                            <div st-pagination=""  st-template="pagination.custom.html" st-items-by-page=100 st-displayed-pages="7"></div>
                         </td>
                     </tr>
                 </tfoot>
@@ -76,6 +87,7 @@
     <script src="~/ScriptsNg/Module/app.js"></script>
     <script src="~/ScriptsNg/Services/PostServices.js"></script>
     <script src="~/ScriptsNg/Controller/PostController.js"></script>
+    <script src="~/ScriptsNg/Config/PostConfig.js"></script>
 </body>
 </html>
 
